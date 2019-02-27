@@ -118,7 +118,8 @@ let NERDTreeShowLineNumbers = 0
 let g:NERDTreeWinPos = 'right'
 "let g:NERDTreeDirArrowExpandable = '?'
 "let g:NERDTreeDirArrowCollapsible = '?'
-nmap <F6> :NERDTreeToggle <cr>
+"nmap <F6> :NERDTreeToggle <cr>
+nmap <F6> :NERDTreeFocus<cr>
 
 if exists('g:NERDTreeWinPos')
     autocmd vimenter * NERDTree
@@ -126,78 +127,91 @@ endif
 
 " }}}
 
+" ------ TagList ------- {{{
+let Tlist_Auto_Open=1
+nmap <F8> :TlistOpen <cr>
+nmap <Alt+F8> :TlistHighlightTag <cr>
+autocmd vimenter * TlistOpen
+autocmd vimenter * TlistOpen
+
+" Move focus to the right of Taglist window accessed, must be after the
+" taglist plugin configuration.
+" Assume only NERDTree(RIGHT) and Taglist(LEFT) window are shown when VIM starts
+autocmd VimEnter * wincmd l 
+" }}}
+
+" }}}  end of Plugins
+
 " Keymap {{{
-let mapleader=","
+"let mapleader=","
 
-nmap <leader>s :source $MYVIMRC<cr>
-nmap <leader>e :e $MYVIMRC<cr>
+"nmap <leader>s :source $MYVIMRC<cr>
+"nmap <leader>e :e $MYVIMRC<cr>
 
-nmap <leader>tn :tabnew<cr>
-nmap <leader>tc :tabclose<cr>
-nmap <leader>th :tabp<cr>
-nmap <leader>tl :tabn<cr>
+"nmap <leader>tn :tabnew<cr>
+"nmap <leader>tc :tabclose<cr>
+"nmap <leader>th :tabp<cr>
+"nmap <leader>tl :tabn<cr>
 
 " 移动分割窗口
-nmap <C-j> <C-W>j
-nmap <C-k> <C-W>k
-nmap <C-h> <C-W>h
-nmap <C-l> <C-W>l
+"nmap <C-j> <C-W>j
+"nmap <C-k> <C-W>k
+"nmap <C-h> <C-W>h
+"nmap <C-l> <C-W>l
 
 " 正常模式下 alt+j,k,h,l 调整分割窗口大小
-nnoremap <M-j> :resize +5<cr>
-nnoremap <M-k> :resize -5<cr>
-nnoremap <M-h> :vertical resize -5<cr>
-nnoremap <M-l> :vertical resize +5<cr>
+"nnoremap <M-j> :resize +5<cr>
+"nnoremap <M-k> :resize -5<cr>
+"nnoremap <M-h> :vertical resize -5<cr>
+"nnoremap <M-l> :vertical resize +5<cr>
 
 " 插入模式移动光标 alt + 方向键
-inoremap <M-j> <Down>
-inoremap <M-k> <Up>
-inoremap <M-h> <left>
-inoremap <M-l> <Right>
+"inoremap <M-j> <Down>
+"inoremap <M-k> <Up>
+"inoremap <M-h> <left>
+"inoremap <M-l> <Right>
 
 " IDE like delete
-inoremap <C-BS> <Esc>bdei
+"inoremap <C-BS> <Esc>bdei
 
-nnoremap vv ^vg_
+"nnoremap vv ^vg_
 " 转换当前行为大写
-inoremap <C-u> <esc>mzgUiw`za
+"inoremap <C-u> <esc>mzgUiw`za
 " 命令模式下的行首尾
-cnoremap <C-a> <home>
-cnoremap <C-e> <end>
+"cnoremap <C-a> <home>
+"cnoremap <C-e> <end>
 
-nnoremap <F2> :setlocal number!<cr>
-nnoremap <leader>w :set wrap!<cr>
+"nnoremap <F2> :setlocal number!<cr>
+"nnoremap <leader>w :set wrap!<cr>
 
-imap <C-v> "+gP
-vmap <C-c> "+y
-vnoremap <BS> d
-vnoremap <C-C> "+y
-vnoremap <C-Insert> "+y
-imap <C-V> "+gP
-map <S-Insert> "+gP
-cmap <C-V> <C-R>+
-cmap <S-Insert> <C-R>+
+"imap <C-v> "+gP
+"vmap <C-c> "+y
+"vnoremap <BS> d
+"vnoremap <C-C> "+y
+"vnoremap <C-Insert> "+y
+"imap <C-V> "+gP
+"map <S-Insert> "+gP
+"cmap <C-V> <C-R>+
+"cmap <S-Insert> <C-R>+
 
-exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
-exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
+"exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
+"exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
 " 打开当前目录 windows
-nmap <silent> <leader>ex :!start explorer %:p:h<CR>
+"nmap <silent> <leader>ex :!start explorer %:p:h<CR>
 
 " 打开当前目录CMD
-nmap <silent> <leader>cmd :!start cmd /k cd %:p:h<cr>
+"nmap <silent> <leader>cmd :!start cmd /k cd %:p:h<cr>
 " 打印当前时间
-nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
-
-let NERDTreeBookmarksFile = $VIM . '/NERDTreeBookmarks'
+"nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 
 " 复制当前文件/路径到剪贴板
-nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
+"nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+"nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
 "设置切换Buffer快捷键"
-nnoremap <C-left> :bn<CR>
-nnoremap <C-right> :bp<CR>
+"nnoremap <C-left> :bn<CR>
+"nnoremap <C-right> :bp<CR>
 
 " }}}
 
