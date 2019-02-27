@@ -106,6 +106,26 @@ set foldmethod=indent
 syntax on
 " }}}
 
+" Plugins {{{
+
+" ----- NERDTree ----- {{{
+"let NERDTreeIgnore=['.idea', '.vscode', 'node_modules', '*.pyc']
+"let NERDTreeBookmarksFile = $VIM . '/NERDTreeBookmarks'
+let NERDTreeMinimalUI = 1
+"let NERDTreeBookmarksSort = 1
+let NERDTreeShowLineNumbers = 0
+"let NERDTreeShowBookmarks = 1
+let g:NERDTreeWinPos = 'right'
+"let g:NERDTreeDirArrowExpandable = '?'
+"let g:NERDTreeDirArrowCollapsible = '?'
+nmap <F6> :NERDTreeToggle <cr>
+
+if exists('g:NERDTreeWinPos')
+    autocmd vimenter * NERDTree
+endif
+
+" }}}
+
 " Keymap {{{
 let mapleader=","
 
