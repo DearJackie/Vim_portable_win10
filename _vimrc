@@ -7,7 +7,9 @@
 "  for MS-DOS and Win32:  $VIM\_vimrc
 
 " Startup {{{
-filetype indent plugin on
+" Enable file type detection, filetype plugin loading and filetype ident
+" loading
+filetype plugin indent on
 
 augroup vimrcEx
 au!
@@ -30,6 +32,8 @@ augroup ft_vim
 
     augroup END
 augroup END
+
+
 " }}}
 
 " General {{{
@@ -50,7 +54,7 @@ set winaltkeys=no
 " Lang & Encoding {{{
 set fileencodings=utf-8,gbk2312,gbk,gb18030,cp936
 set encoding=utf-8
-set langmenu=zh_CN
+"set langmenu=zh_CN
 let $LANG = 'en_US.UTF-8'
 "language messages zh_CN.UTF-8
 " }}}
@@ -58,8 +62,8 @@ let $LANG = 'en_US.UTF-8'
 " GUI {{{
 colorscheme Tomorrow-Night
 
-source $VIMRUNTIME/delmenu.vim
-source $VIMRUNTIME/menu.vim
+"source $VIMRUNTIME/delmenu.vim
+"source $VIMRUNTIME/menu.vim
 set cursorline
 set hlsearch
 set number
@@ -78,7 +82,13 @@ set guioptions-=b
 set guioptions-=e
 " set nolist
 set listchars=trail:·,extends:>,precedes:<
-set guifont=Inconsolata:h12:cANSI
+if has("gui_running")
+  if has("gui_win32")
+    set guifont=Consolas:h12:cANSI
+  else
+  
+  endif
+endif
 
 set statusline=%f
 set statusline+=%m
