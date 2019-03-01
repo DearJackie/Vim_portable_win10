@@ -7,48 +7,50 @@
 "  for MS-DOS and Win32:  $VIM\_vimrc
 
 " Startup {{{
-" Enable file type detection, filetype plugin loading and filetype ident
-" loading
-filetype plugin indent on
 
-augroup vimrcEx
-au!
+" Enable file type detection, filetype plugin loading and filetype ident loading 
+filetype plugin indent on 
 
-autocmd FileType text setlocal textwidth=78
+" open all folds when open a file
+autocmd BufRead * normal zR
+autocmd FileType text setlocal textwidth=78 
 
-augroup END
+" foldmethod for vim file is marker
+autocmd FileType vim setlocal foldmethod=marker
 
-" vim 文件折叠方式为 marker
-augroup ft_vim
-    au!
-
-    autocmd FileType vim setlocal foldmethod=marker
-
-    " 打开文件总是定位到上次编辑的位置
-    autocmd BufReadPost *
+" Locate cursor to last edited location when open file
+autocmd BufReadPost *
       \ if line("'\"") > 1 && line("'\"") <= line("$") |
       \   exe "normal! g`\"" |
       \ endif
 
-    augroup END
-augroup END
-
-
-" }}}
+" }}} End of Startup
 
 " General {{{
+" search case insensitive
+set ignorecase
+
 set nocompatible
 set nobackup
 set noswapfile
 set history=1024
-set autochdir
+
+" change current working directory whenever open a file, switch buffers
+set autochdir 
 set whichwrap=b,s,<,>,[,]
+
+" No Byte Order Mark, this is the default value
 set nobomb
-set backspace=indent,eol,start whichwrap+=<,>,[,]
-" Vim 的默认寄存器和系统剪贴板共享
+
+" enable Backspace key to work the same as other editors in INSERT mode
+set backspace=indent,eol,start 
+
+" share the default registers with system clipboard
 set clipboard+=unnamed
-" 设置 alt 键不映射到菜单栏
+
+" alt key not mapped to menu bar 
 set winaltkeys=no
+" set colorcolumn=80  " show column line
 " }}}
 
 " Lang & Encoding {{{
@@ -67,12 +69,14 @@ colorscheme Tomorrow-Night
 set cursorline
 set hlsearch
 set number
-" 窗口大小
-set lines=35 columns=140
-" 分割出来的窗口位于当前窗口下边/右边
+
+" set window size
+"set lines=35 columns=140
+
+" new splitted window locates below and right
 set splitbelow
 set splitright
-"不显示工具/菜单栏
+" don't display Toolbar and Menubar in GUI
 set guioptions-=T
 set guioptions-=m
 set guioptions-=L
@@ -90,18 +94,19 @@ if has("gui_running")
   endif
 endif
 
-set statusline=%f
-set statusline+=%m
+set statusline=%f  "f  show file path of the current file in the buffer
+set statusline+=%m " show modified flag, [+] means changes not saved; [-] means can't be modified 
 "set statusline+=\ %{fugitive#head()}
 set statusline+=%=
 set statusline+=%{''.(&fenc!=''?&fenc:&enc).''}
 set statusline+=/
-set statusline +=%{&ff}            "file format
+set statusline+=%{&ff}            "file format
 set statusline+=\ -\      " Separator
-set statusline+=%l/%L
+set statusline+=Line:%l/%L 
+set statusline+=\ \Col:%c
 set statusline+=[%p%%]
 set statusline+=\ -\      " Separator
-set statusline +=%1*\ %y\ %*
+set statusline+=%1*\ %y\ %*  " show file type
 
 " }}}
 
@@ -128,7 +133,7 @@ let NERDTreeShowLineNumbers = 0
 let g:NERDTreeWinPos = 'right'
 "let g:NERDTreeDirArrowExpandable = '?'
 "let g:NERDTreeDirArrowCollapsible = '?'
-"nmap <F6> :NERDTreeToggle <cr>
+nmap <C-F6> :NERDTreeToggle <cr>
 nmap <F6> :NERDTreeFocus<cr>
 
 if exists('g:NERDTreeWinPos')
@@ -140,8 +145,8 @@ endif
 " ------ TagList ------- {{{
 let Tlist_Auto_Open=1
 nmap <F8> :TlistOpen <cr>
-nmap <Alt+F8> :TlistHighlightTag <cr>
-autocmd vimenter * TlistOpen
+"nmap <Alt-F8> :TlistHighlightTag <cr>
+nmap <C-F8> :TlistToggle <cr>
 autocmd vimenter * TlistOpen
 
 " Move focus to the right of Taglist window accessed, must be after the

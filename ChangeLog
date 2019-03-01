@@ -13,8 +13,11 @@ Download source: https://sourceforge.net/projects/mslk/files/Cscope/cscope-15.7/
  
 To build the database, follow the steps:
 1. Create the file list cscope will build database on: cscope.files
-2. Run "cscope -b -i" program to create a database for the listed source files, the generated database name
-   is "cscope.out"
+2. Run "cscope -b -q -k" program to create a database for the listed source files, the generated database name
+   is "cscope.out":
+   -b: create database only, no GUI
+   -q: created inverted index file
+   -k: 
 3. Add the database connection to Vim: ":cs add cscope.out", check the connection status using: ":cs show"
 4. Once a scope connection is established, make queries to cscope in Vim: ":cs find <type> <symbol>". This can
    be mapped to shortcut keys("cscope_maps.vim" does this).
@@ -34,7 +37,7 @@ Download source: https://www.vim.org/scripts/
 
 --2019/02/25:
 [Misc Tips]
-Useful environment vairables:
+1. Useful environment vairables:
 $HOME
 $VIM
 $VIMRUNTIME
@@ -42,3 +45,17 @@ $VIMRC
 $MYVIMRC
 &rtp
 &runtimepath - $VIMRUNTIMEPATH is part of this variable
+
+2. In windows system, to run external command without pending vim, using the following
+format:
+:!start cmd /k "my app.exe"
+
+3: Create tags for Linux kernel (using scripts\tags.sh):
+make O=. ARCH=arm SUBARCH=omap2 COMPILED_SOURCE=1 cscope tags
+make ARCH=x86 cscope tags
+
+4. Clear the highlights temparorily after search by "/": ":noh"
+
+5. When in command line mode, to navigate command history but not using arrow
+keys, you can use "ctrl-p" and "ctrl-n".
+
