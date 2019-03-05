@@ -51,6 +51,9 @@ set clipboard+=unnamed
 " alt key not mapped to menu bar 
 set winaltkeys=no
 " set colorcolumn=80  " show column line
+
+" set third party programs path into runtimepath
+"set rtp+=./thirdparty
 " }}}
 
 " Lang & Encoding {{{

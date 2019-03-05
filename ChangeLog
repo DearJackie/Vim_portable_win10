@@ -17,7 +17,12 @@ To build the database, follow the steps:
    is "cscope.out":
    -b: create database only, no GUI
    -q: created inverted index file
-   -k: 
+   -k: kernel mode, don't use /usr/include for #include files 
+   -R: Recursive directories for files
+   -s dir: Look in "dir" for additional source files
+   -i namefile: browse through files listed in "namefile" instead of
+   "cscope.files"
+   -d: Don't update the cross-references
 3. Add the database connection to Vim: ":cs add cscope.out", check the connection status using: ":cs show"
 4. Once a scope connection is established, make queries to cscope in Vim: ":cs find <type> <symbol>". This can
    be mapped to shortcut keys("cscope_maps.vim" does this).
