@@ -29,7 +29,14 @@ autocmd BufReadPost *
 " General {{{
 " search case insensitive
 set ignorecase
-
+" When 'ignorecase' and 'smartcase' are both on, if a pattern contains an uppercase letter, it is case sensitive, otherwise, it is not. For example, /The would find only "The", while /the would find "the" or "The" etc.
+set smartcase
+" enable incremental search
+set incsearch
+" do not wrap around for search
+set nowrapscan    
+" show matching bracket
+set showmatch
 set nocompatible
 set nobackup
 set noswapfile
@@ -52,8 +59,16 @@ set clipboard+=unnamed
 set winaltkeys=no
 " set colorcolumn=80  " show column line
 
-" set third party programs path into runtimepath
-"set rtp+=./thirdparty
+" set third party programs path into 
+let thirdpartypath=$VIM.'\'.'ThirdParties'
+let $PATH=$PATH.';'.thirdpartypath
+let ctagspath=thirdpartypath.'\'.'ctags'
+let $PATH=$PATH.';'.ctagspath
+let cscopepath=thirdpartypath.'\'.'cscope'
+let $PATH=$PATH.';'.cscopepath
+let unixutilpath=thirdpartypath.'\'.'UnxUtils'
+let $PATH=$PATH.';'.unixutilpath
+
 " }}}
 
 " Lang & Encoding {{{
