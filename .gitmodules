@@ -1,0 +1,12 @@
+[submodule "vimfiles/pack/plugins/start/ale"]
+	path = vimfiles/pack/plugins/start/ale
+	url = https://github.com/w0rp/ale.git
+[submodule "vimfiles/pack/plugins/start/vim-gitgutter"]
+	path = vimfiles/pack/plugins/start/vim-gitgutter
+	url = https://github.com/airblade/vim-gitgutter
+[submodule "vimfiles/pack/plugins/start/tagbar"]
+	path = vimfiles/pack/plugins/start/tagbar
+	url = https://github.com/majutsushi/tagbar
+[submodule "vimfiles/pack/plugins/start/nerdtree"]
+	path = vimfiles/pack/plugins/start/nerdtree
+	url = https://github.com/scrooloose/nerdtree

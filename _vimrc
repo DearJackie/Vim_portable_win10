@@ -41,7 +41,8 @@ set nocompatible
 set nobackup
 set noswapfile
 set history=1024
-
+" automatically save current file when switch buffers
+"set autowrite 
 " change current working directory whenever open a file, switch buffers
 set autochdir 
 set whichwrap=b,s,<,>,[,]
@@ -142,35 +143,33 @@ syntax on
 " Plugins {{{
 
 " ----- NERDTree ----- {{{
-"let NERDTreeIgnore=['.idea', '.vscode', 'node_modules', '*.pyc']
-"let NERDTreeBookmarksFile = $VIM . '/NERDTreeBookmarks'
 let NERDTreeMinimalUI = 1
-"let NERDTreeBookmarksSort = 1
 let NERDTreeShowLineNumbers = 0
-"let NERDTreeShowBookmarks = 1
 let g:NERDTreeWinPos = 'right'
-"let g:NERDTreeDirArrowExpandable = '?'
-"let g:NERDTreeDirArrowCollapsible = '?'
 nmap <C-F6> :NERDTreeToggle <cr>
 nmap <F6> :NERDTreeFocus<cr>
 
 if exists('g:NERDTreeWinPos')
     autocmd vimenter * NERDTree
 endif
-
 " }}}
 
-" ------ TagList ------- {{{
-let Tlist_Auto_Open=1
-nmap <F8> :TlistOpen <cr>
-"nmap <Alt-F8> :TlistHighlightTag <cr>
-nmap <C-F8> :TlistToggle <cr>
-autocmd vimenter * TlistOpen
-
-" Move focus to the right of Taglist window accessed, must be after the
-" taglist plugin configuration.
-" Assume only NERDTree(RIGHT) and Taglist(LEFT) window are shown when VIM starts
+" ------Tagbar/ TagList ------- {{{
+let g:tagbar_left=1
+let g:tagbar_autofocus=1 " cursor will move to tagbar window when it's opened
+nmap <F8> :TagbarOpen j <cr>
+nmap <C-F8> :TagbarToggle <cr>
+autocmd vimenter * TagbarOpen
+" Move focus to the right of Tagbar window accessed, must be after the
+" tagbar plugin configuration.
+" Assume only NERDTree(RIGHT) and Tagbar(LEFT) window are shown when VIM starts
+" focus is on Tagbar, move focus to right(key "l")
 autocmd VimEnter * wincmd l 
+" }}}
+
+" ------Vim-gitgutter ------- {{{
+" The delay is governed by vim's updatetime option; the default value is 4000, i.e. 4 seconds, but I suggest reducing it to around 100ms
+set updatetime=100
 " }}}
 
 " }}}  end of Plugins
@@ -178,6 +177,8 @@ autocmd VimEnter * wincmd l
 " Keymap {{{
 "let mapleader=","
 
+nmap <C-tab> :bn<CR>
+"nmap <C-right> :bp<CR>
 "nmap <leader>s :source $MYVIMRC<cr>
 "nmap <leader>e :e $MYVIMRC<cr>
 

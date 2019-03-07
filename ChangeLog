@@ -1,3 +1,20 @@
+--2019/03/08:
+Adjust all the plugins as git submodules
+
+[ALE]
+1. Add plugin ALE for "checking syntax and semantics"
+Download source: https://github.com/w0rp/ale.git
+
+[VIM-GitGutter]
+1.Shows a git diff in the 'gutter' (sign column): working copy vs HEAD
+Download source: https://github.com/airblade/vim-gitgutter
+
+[Tagbar]
+1.Replace Taglist with Tagbar.
+It has the advantage that it will display them ordered by their scope as
+compared with Taglist.
+Download source: https://github.com/majutsushi/tagbar
+
 --2019/02/28:
 [CTAGS]
 1. Upgrade from V5.7 to V5.8:
@@ -38,7 +55,7 @@ Download source: https://www.vim.org/scripts/
 [NERDTree]
 1. Add NERDTree plugin
 2. Modify _vimrc file to open the NERDTree window at the right when vim starts
-Download source: https://www.vim.org/scripts/
+Download source: https://github.com/scrooloose/nerdtree
 
 --2019/02/25:
 [Misc Tips]
@@ -64,3 +81,4 @@ make ARCH=x86 cscope tags
 5. When in command line mode, to navigate command history but not using arrow
 keys, you can use "ctrl-p" and "ctrl-n".
 
+6. Build tags for new plugins: helptags ALL
