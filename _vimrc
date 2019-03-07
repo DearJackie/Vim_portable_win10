@@ -170,21 +170,40 @@ autocmd VimEnter * wincmd l
 " ------Vim-gitgutter ------- {{{
 " The delay is governed by vim's updatetime option; the default value is 4000, i.e. 4 seconds, but I suggest reducing it to around 100ms
 set updatetime=100
+" define key mapping to show all changes in the buffer
+nmap <C-F10> :GitGutterFold <cr>
+" }}}
+
+" ------CSCOPE ------- {{{
+" add any cscope database in current directory
+let currentcsdb="cscope.out"
+if filereadable("cscope.out")
+   let currentcsdb="cscope.out"
+" else add the database pointed to by environment variable 
+elseif $CSCOPE_DB != ""
+   let currentcsdb=$CSCOPE_DB
+endif
+" define a shortkey to map this operation
+nmap <C-M-s> :cs add currentcsdb<cr>
 " }}}
 
 " }}}  end of Plugins
 
+" Post process {{{
+"
+" }}} 
+  
 " Keymap {{{
-"let mapleader=","
-
+let mapleader=","
 nmap <C-tab> :bn<CR>
-"nmap <C-right> :bp<CR>
 "nmap <leader>s :source $MYVIMRC<cr>
-"nmap <leader>e :e $MYVIMRC<cr>
-
+nmap <leader>e :e $MYVIMRC<cr>
+noremap <silent> <C-S>          :update<CR>
+vnoremap <silent> <C-S>         <C-C>:update<CR>
+inoremap <silent> <C-S>         <C-O>:update<CR>
 "nmap <leader>tn :tabnew<cr>
 "nmap <leader>tc :tabclose<cr>
-"nmap <leader>th :tabp<cr>
+map <leader>th :tabp<cr>
 "nmap <leader>tl :tabn<cr>
 
 " 移动分割窗口
@@ -199,11 +218,11 @@ nmap <C-tab> :bn<CR>
 "nnoremap <M-h> :vertical resize -5<cr>
 "nnoremap <M-l> :vertical resize +5<cr>
 
-" 插入模式移动光标 alt + 方向键
-"inoremap <M-j> <Down>
-"inoremap <M-k> <Up>
-"inoremap <M-h> <left>
-"inoremap <M-l> <Right>
+" move cursor in INSERT mode: alt + 方向键
+inoremap <M-j> <Down>
+inoremap <M-k> <Up>
+inoremap <M-h> <left>
+inoremap <M-l> <Right>
 
 " IDE like delete
 "inoremap <C-BS> <Esc>bdei
@@ -212,11 +231,11 @@ nmap <C-tab> :bn<CR>
 " 转换当前行为大写
 "inoremap <C-u> <esc>mzgUiw`za
 " 命令模式下的行首尾
-"cnoremap <C-a> <home>
-"cnoremap <C-e> <end>
+cnoremap <C-a> <home>
+cnoremap <C-e> <end>
 
-"nnoremap <F2> :setlocal number!<cr>
-"nnoremap <leader>w :set wrap!<cr>
+nnoremap <F2> :setlocal number!<cr>
+nnoremap <leader>w :set wrap!<cr>
 
 "imap <C-v> "+gP
 "vmap <C-c> "+y
@@ -231,21 +250,17 @@ nmap <C-tab> :bn<CR>
 "exe 'inoremap <script> <C-V>' paste#paste_cmd['i']
 "exe 'vnoremap <script> <C-V>' paste#paste_cmd['v']
 
-" 打开当前目录 windows
-"nmap <silent> <leader>ex :!start explorer %:p:h<CR>
+" open current directory in windows explorer
+nmap <silent> <leader>ex :!start explorer %:p:h<CR>
 
-" 打开当前目录CMD
-"nmap <silent> <leader>cmd :!start cmd /k cd %:p:h<cr>
+" open a windows command line window and got the current directory
+nmap <silent> <leader>cmd :!start cmd /k cd %:p:h<cr>
 " 打印当前时间
 "nmap <F3> a<C-R>=strftime("%Y-%m-%d %a %I:%M %p")<CR><Esc>
 
 " 复制当前文件/路径到剪贴板
-"nmap ,fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
-"nmap ,fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
-
-"设置切换Buffer快捷键"
-"nnoremap <C-left> :bn<CR>
-"nnoremap <C-right> :bp<CR>
+nmap <leader>fn :let @*=substitute(expand("%"), "/", "\\", "g")<CR>
+nmap <leader>fp :let @*=substitute(expand("%:p"), "/", "\\", "g")<CR>
 
 " }}}
 
