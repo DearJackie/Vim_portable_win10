@@ -184,7 +184,15 @@ elseif $CSCOPE_DB != ""
    let currentcsdb=$CSCOPE_DB
 endif
 " define a shortkey to map this operation
-nmap <C-M-s> :cs add currentcsdb<cr>
+"nmap <C-M-s> :cs add currentcsdb<cr>
+nmap <F12> :cs add currentcsdb<cr>
+" }}}
+
+" ------vim-session ------- {{{
+" automatically save the sessions every 5 minutes
+let g:session_autosave_periodic=5 
+let g:session_autosave = "yes"
+let g:session_autoload = "yes"
 " }}}
 
 " }}}  end of Plugins
@@ -198,12 +206,12 @@ let mapleader=","
 nmap <C-tab> :bn<CR>
 "nmap <leader>s :source $MYVIMRC<cr>
 nmap <leader>e :e $MYVIMRC<cr>
-noremap <silent> <C-S>          :update<CR>
-vnoremap <silent> <C-S>         <C-C>:update<CR>
-inoremap <silent> <C-S>         <C-O>:update<CR>
+"noremap <silent> <C-S>          :update<CR>
+"vnoremap <silent> <C-S>         <C-C>:update<CR>
+"inoremap <silent> <C-S>         <C-O>:update<CR>
 "nmap <leader>tn :tabnew<cr>
 "nmap <leader>tc :tabclose<cr>
-map <leader>th :tabp<cr>
+"map <leader>th :tabp<cr>
 "nmap <leader>tl :tabn<cr>
 
 " 移动分割窗口

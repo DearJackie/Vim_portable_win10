@@ -1,4 +1,11 @@
+
 --2019/03/08:
+[vim-session][vim-misc]
+Add plugins for session management:(note that vim-session depends on vim-misc)
+https://github.com/xolox/vim-session.git
+https://github.com/xolox/vim-misc.git
+
+--2019/03/07:
 Adjust all the plugins as git submodules
 
 [ALE]

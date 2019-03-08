@@ -10,3 +10,9 @@
 [submodule "vimfiles/pack/plugins/start/nerdtree"]
 	path = vimfiles/pack/plugins/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
+[submodule "vimfiles/pack/plugins/start/vim-session"]
+	path = vimfiles/pack/plugins/start/vim-session
+	url = https://github.com/xolox/vim-session.git
+[submodule "vimfiles/pack/plugins/start/vim-misc"]
+	path = vimfiles/pack/plugins/start/vim-misc
+	url = https://github.com/xolox/vim-misc.git
